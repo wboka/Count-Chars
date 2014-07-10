@@ -19,5 +19,6 @@
 	"keywords": ["jQuery", "count", "characters", "textfield", "textarea", "textbox"],
 	"bugs": "https://github.com/guntherwu/Count-Chars/issues",
 	"docs": "https://github.com/guntherwu/Count-Chars/wiki",
-	"download": "https://github.com/guntherwu/Count-Chars/archive/master.zip"
+	"download": "https://github.com/guntherwu/Count-Chars/archive/master.zip",
+	"demo": "http://jsfiddle.net/j2n4D/18/embedded/result/"
 }
