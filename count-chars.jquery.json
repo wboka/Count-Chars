@@ -1,7 +1,7 @@
 {
     "name": "count-chars",
     "title": "Count Chars",
-    "version": "0.1.0",
+    "version": "0.1.1",
 	"author": {
         "name": "Wayne Boka",
         "url": "http://github.com/guntherwu"
@@ -14,5 +14,10 @@
     ],
     "dependencies": {
         "jquery": ">=1.0"
-    }
+    },
+	"description": "jQuery plugin to count characters in a text field.",
+	"keywords": ["jQuery", "count", "characters", "textfield", "textarea", "textbox"],
+	"bugs": "https://github.com/guntherwu/Count-Chars/issues",
+	"docs": "https://github.com/guntherwu/Count-Chars/wiki",
+	"download": "https://github.com/guntherwu/Count-Chars/archive/master.zip"
 }
