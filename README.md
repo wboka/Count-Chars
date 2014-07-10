@@ -1,4 +1,7 @@
 Count-Chars
 ===========
 
-jQuery to count characters in a text field
+jQuery plugin to count characters in a text field.
+
+More info coming soon.
+===========
