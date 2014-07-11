@@ -1,76 +1,128 @@
-(function ($) {
-    $.fn.countChars = function (options) {
+(function($) {
+    $.fn.countChars = function(options) {
         // Set default settings
         var settings = $.extend({
-            parentContainer: 'p',
-            charsRemainingContainer: 'span.charsRemaining',
+            parentContainer: "div",
+            charsClass: "charsRemaining",
+            position: "before",
             debug: false,
             debugMode: "console",
             clearConsole: false
         }, options);
 
-		// Check if the parent & charsRemaining containers exist
-        if ($(settings.parentContainer).length !== 0 && $(settings.charsRemainingContainer).length !== 0) {
-			// Loop over each text box/field            
-            return this.each(function () {
-                // Set default characters remaining to (maxlength - current value length) 
-                $(this).each(function () {
-                    var $this = $(this);
+        if (settings.debug) {
+            if (settings.clearConsole && settings.debugMode === "console") {
+                if (!window.console) {
+                    window.console = {
+                        log: function() {}
+                    };
+                }
+                console.clear();
+            }
 
-					// Get max characters
-                    var totalChars = $this.attr("maxlength");
-                    // Get used characters
-                    var usedChars = $this.val().length;
-                    // Calculate characters remaining
-                    var numRemaining = totalChars - usedChars;
+            var msg = ".:|BEGIN DEBUG @ " + new Date().toString() + "|:.";
 
-					// Set the number remaining
-                    $this.prev(settings.parentContainer).find(settings.charsRemainingContainer).text(numRemaining);
-                });
+            for (var I in settings) {
+                msg += "\n" + I + " = " + settings[I];
+            }
 
-                $(this).bind("focus change keyup paste", function () {
-                    var $this = $(this);
+            msg += "\n.:|END DEBUG @ " + new Date().toString() + "|:.";
 
-                    // setTimeout required due to the paste event
-                    setTimeout(function () {
+            switch (settings.debugMode) {
+            case "alert":
+                alert(msg);
+                break;
+            case "console":
+                console.log(msg);
+                break;
+            default:
+                console.log("This is not the message you are looking for...");
+            }
+        }
+
+        var length = 1;
+        var charRemainingContainer = "<" + settings.parentContainer + "><span class='" + settings.charsClass + "'></span> Characters Left</" + settings.parentContainer + ">";
+        var charEnteredContainer = "<" + settings.parentContainer + "><span class='" + settings.charsClass + "'></span> Characters Entered</" + settings.parentContainer + ">";
+
+        // Loop over each text box/field
+        return this.each(function() {
+            $(this).each(function() {
+                var $this = $(this);
+
+                var hasMaxLength = typeof $this.attr("maxlength") !== "undefined";
+
+                if (hasMaxLength) {
                     // Get max characters
                     var totalChars = $this.attr("maxlength");
                     // Get used characters
                     var usedChars = $this.val().length;
                     // Calculate characters remaining
                     var numRemaining = totalChars - usedChars;
+                } else {
+                    var numRemaining = $this.val().length;
+                }
 
-					// Set the number remaining
-                    $this.prev(settings.parentContainer).find(settings.charsRemainingContainer).text(numRemaining);
-                    }, 0);
-                });
+                // Check if the parent & charsRemaining containers exist
+                if (settings.position === "before") {
+                    if ($this.prev(settings.parentContainer).length === 0) {
+                        if (hasMaxLength) {
+                            $(charRemainingContainer).insertBefore($this);
+                        } else {
+                            $(charEnteredContainer).insertBefore($this);
+                        }
+
+                        $parent = $this.prev(settings.parentContainer);
+                    } else {
+                        $parent = $(settings.parentContainer);
+                    }
+                } else {
+                    if ($this.next(settings.parentContainer).length === 0) {
+                        if (hasMaxLength) {
+                            $(charRemainingContainer).insertAfter($this);
+                        } else {
+                            $(charEnteredContainer).insertAfter($this);
+                        }
+                        $parent = $this.next(settings.parentContainer);
+                    } else {
+                        $parent = $(settings.parentContainer);
+                    }
+                }
+
+                // Set the number remaining
+                $parent.find("span." + settings.charsClass).text(numRemaining);
+
+                // Increase the length
+                length++;
             });
-        } else {
-            if (settings.debug) {
-                if (settings.clearConsole) {
-                    console.clear();
-                }
 
-                var msg = ".:|BEGIN DEBUG @ " + new Date().toString() + "|:.";
-                if ($(settings.parentContainer).length === 0) {
-                    msg += "\nThe parentContainer ('" + settings.parentContainer + "') does not exist. ";
-                }
+            $(this).bind("focus change keyup paste", function() {
+                var $this = $(this);
 
-                if ($(settings.charsRemainingContainer).length === 0) {
-                    msg += "\nThe charsRemainingContainer ('" + settings.charsRemainingContainer + "') does not exist.";
-                }
+                var hasMaxLength = typeof $this.attr("maxlength") !== "undefined";
 
-                msg += "\n.:|END DEBUG @ " + new Date().toString() + "|:.";
+                // setTimeout required due to the paste event
+                setTimeout(function() {
+                    if (hasMaxLength) {
+                        // Get max characters
+                        var totalChars = $this.attr("maxlength");
+                        // Get used characters
+                        var usedChars = $this.val().length;
+                        // Calculate characters remaining
+                        var numRemaining = totalChars - usedChars;
+                    } else {
+                        var numRemaining = $this.val().length;
+                    }
 
-                switch (settings.debugMode) {
-                    case "alert":
-                        alert(msg);
-                        break;
-                    case "console":
-                    default:
-                        console.log(msg);
-                }
-            }
-        }
+                    if (settings.position === "before") {
+                        $parent = $this.prev(settings.parentContainer);
+                    } else {
+                        $parent = $this.next(settings.parentContainer);
+                    }
+
+                    // Set the number remaining
+                    $parent.find("span." + settings.charsClass).text(numRemaining);
+                }, 0);
+            });
+        });
     };
 }(jQuery));

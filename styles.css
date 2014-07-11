@@ -1,0 +1,14 @@
+textarea {
+	display: block;
+	width: 100%;
+}
+
+h2, div {
+	color: #FFFFFF;
+}
+
+div.bucket {
+	background: #0769AD;
+	margin: 5px;
+	padding: 10px;
+}
