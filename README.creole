@@ -4,9 +4,13 @@ jQuery plugin to count characters in a text field.
 
 == Disclaimer ==
 
-The maxlength attribute is supported in Internet Explorer 10+, Firefox, Opera 15+, Chrome, and Safari.
+The {{{maxlength}}} attribute is supported in Internet Explorer 10+, Firefox, Opera 15+, Chrome, and Safari.
 
-Note: The maxlength attribute of the <textarea> tag is not supported in Internet Explorer 9 and earlier versions, or in Opera 12 and earlier versions.
+Note: The {{{maxlength}}} attribute of the {{{<textarea>}}} tag is not supported in Internet Explorer 9 and earlier versions, or in Opera 12 and earlier versions.
+
+== Requirements ==
+
+* jQuery > 1.0.0
 
 == Settings ==
 
@@ -17,3 +21,43 @@ Note: The maxlength attribute of the <textarea> tag is not supported in Internet
 |debug|{{{boolean}}}|false|true or false|"debug": true|
 |debugMode|{{{string}}}|"console"|"alert" or "console"|"debugMode": "alert"|
 |clearConsole|{{{boolean}}}|false|true or false|"clearConsole": true|
+
+== Setup (2 Options) ==
+
+=== Option 1 ===
+
+Include the following code before the {{{</body>}}} tag:
+
+{{{
+1. <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+2. <script type="text/javascript" src="jquery.count-chars.js"></script>
+3. <script type="text/javascript" >$("textarea, input").countChars();</script>
+}}}
+
+**Notes:**
+
+* Line 1 can be replaced by any link to a jQuery library version 1.0 or higher.
+* Line 2 will point to the Count Chars plugin location in your file structure.
+* Line 3  sets up the Count Chars plugin with the default values.
+
+//OR//
+
+=== Option 2 ===
+
+Include the following code before the {{{</head>}}} tag:
+
+{{{
+1. <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
+2. <script type="text/javascript" src="jquery.count-chars.js"></script>
+3. <script type="text/javascript" >
+4. 	$(document).ready(function() {
+5. 		$("textarea, input").countChars();
+6. 	});
+7. </script>
+}}}
+
+**Notes:**
+
+* Line 1 can be replaced by any link to a jQuery library version 1.0 or higher.
+* Line 2 will point to the Count Chars plugin location in your file structure.
+* Line 5 sets up the Count Chars plugin with the default values.
