@@ -11,12 +11,12 @@
         }, options);
 
         if (settings.debug) {
+            if (!window.console) {
+                window.console = {
+                    log: function() {}
+                };
+            }
             if (settings.clearConsole && settings.debugMode === "console") {
-                if (!window.console) {
-                    window.console = {
-                        log: function() {}
-                    };
-                }
                 console.clear();
             }
 
