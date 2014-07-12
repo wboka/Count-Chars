@@ -12,6 +12,14 @@ Note: The {{{maxlength}}} attribute of the {{{<textarea>}}} tag is not supported
 
 * jQuery > 1.0.0
 
+== Versioning ==
+
+//Major.Minor.Patch//
+
+* Major - Breaks backwards compatibility
+* Minor - Adds functionality without breaking backwards compatibility
+* Patch - Bug fixes that are backwards compatible
+
 == Settings ==
 
 |= Name |= Type|= Default|= Accepts|= Example|
