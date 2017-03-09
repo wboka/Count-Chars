@@ -1,5 +1,7 @@
 == Count Chars ==
 
+[[https://lima.codeclimate.com/github/wboka/Count-Chars|{{https://lima.codeclimate.com/github/wboka/Count-Chars/badges/gpa.svg}}]]
+
 jQuery plugin to count characters in a text field.
 
 == Disclaimer ==
