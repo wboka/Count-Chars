@@ -1,5 +1,7 @@
 # Count Chars
 
+[![Build Status](https://travis-ci.com/wboka/Count-Chars.svg?branch=master)](https://travis-ci.com/wboka/Count-Chars)
+
 jQuery plugin to count characters in a text field.
 
 ## Disclaimer
