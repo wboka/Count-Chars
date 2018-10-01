@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Count Chars - jQuery Plugin to Count Characters</title>
+		<meta name="author" content="Wayne">
+		<meta name="copyright" content="2014-2018 Wayne Boka">
+		<meta http-equiv="content-type" content="text/html; charset=UTF-8">
+		<link href="styles.css" rel="stylesheet" type="text/css">
+	</head>
+
+	<body>
+		<div class="bucket">
+			<h2>Text Field 1</h2>
+			<textarea class="notes" maxlength="4000"></textarea>
+		</div>
+		<div class="bucket">
+			<h2>Text Field 2</h2>
+			<textarea class="notes"></textarea>
+		</div>
+		<div class="bucket">
+			<h2>Text Field 3</h2>
+			<input type="text" class="notes" maxlength="50" />
+		</div>
+
+		<!-- Include jQuery and Count Chars plugin -->
+		<script src="http://code.jquery.com/jquery-3.3.1.min.js"></script>
+		<script type="text/javascript" src="./src/jquery.count-chars.js"></script>
+		<script type="text/javascript">$("textarea, input").countChars({ "debug": true });</script>
+		</script>
+	</body>
+
+</html>
